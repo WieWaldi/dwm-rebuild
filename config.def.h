@@ -51,7 +51,6 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 /* include */
 #include <X11/XF86keysym.h>
 #include "vanitygaps.c"
-#include "movestack.c"
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
