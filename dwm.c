@@ -1506,7 +1506,7 @@ runautostart(void)
 	/* if $XDG_CONFIG_HOME is set and not empty, use $XDG_CONFIG_HOME/dwm,
 	 * otherwise use ~/.config/dwm as autostart script directory
 	 */
-	xdgdatahome = getenv("XDG_CONFIG_HOME");
+	xdgconfighome = getenv("XDG_CONFIG_HOME");
 	if (xdgconfighome != NULL && *xdgconfighome != '\0') {
 		/* space for path segments, separators and nul */
 		pathpfx = ecalloc(1, strlen(xdgconfighome) + strlen(dwmdir) + 2);

@@ -95,10 +95,10 @@ static const char *volumemute[]         = { "dwm-volumectrl", "mute", NULL };
 static const char *brightnessup[]       = { "dwm-brightness", "up", NULL };
 static const char *brightnessdown[]     = { "dwm-brightness", "down", NULL };
 static const char *xmenu[]              = { "xmenu.sh", NULL };
-static const char *scratchpad1[]        = { "1", "st", "-t", "ScratchPad1", "-g", "200x40", "-e", "tmux-start.sh", "ScratchPad1", NULL}; 
-static const char *scratchpad2[]        = { "2", "xterm", "-class", "XTermScratchPad", "-title", "ScratchPad2", "-e", "tmux-start.sh", "ScratchPad2", NULL}; 
-static const char *NoteTaking[]         = { "3", "xterm", "-class", "XTermNoteTaking", "-title", "NoteTaking", "-e", "dwm-notetaking", NULL}; 
-static const char *layoutmenu_cmd       = "dwm-layoutmenu";
+// static const char *scratchpad1[]        = { "1", "st", "-t", "ScratchPad1", "-g", "200x40", "-e", "tmux-start.sh", "ScratchPad1", NULL}; 
+// static const char *scratchpad2[]        = { "2", "xterm", "-class", "XTermScratchPad", "-title", "ScratchPad2", "-e", "tmux-start.sh", "ScratchPad2", NULL}; 
+// static const char *NoteTaking[]         = { "3", "xterm", "-class", "XTermNoteTaking", "-title", "NoteTaking", "-e", "dwm-notetaking", NULL}; 
+// static const char *layoutmenu_cmd       = "dwm-layoutmenu";
 
 static const Key keys[] = {
 	/* modifier                     key                         function        argument */
