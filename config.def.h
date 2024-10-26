@@ -53,6 +53,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 /* include */
 #include <X11/XF86keysym.h>
 #include "vanitygaps.c"
+#include "movestack.c"
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -122,6 +123,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,                       setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_l,                       setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,                       setcfact,       {.f =  0.00} },
+	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY|ShiftMask,              XK_u,      incrgaps,       {.i = +1 } },
 	{ MODKEY|ShiftMask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
