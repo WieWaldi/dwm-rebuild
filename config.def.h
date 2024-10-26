@@ -10,6 +10,8 @@ static const unsigned int gappov    = 30;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int focusedontoptiled  = 1;        /* 1 means focused tile client is shown on top of floating windows */
+static const int focusonwheel       = 0;
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
@@ -35,11 +37,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class            instance    title       tags mask     iscentered   isfloating     isfakefullscreen   monitor */
-	{ "Gimp",           NULL,       NULL,       0,            0,           1,             0,                  -1 },
-	{ "Google-chrome",  NULL,       NULL,       0,            0,           0,             1,                  -1 },
-	{ "Firefox",        NULL,       NULL,       1 << 8,       0,           0,             0,                  -1, },
-	{ "XTerm",          NULL,       NULL,       1,            1,           1,             1,                  -1 },
+	/* class            instance    title       tags mask     iscentered   isfloating     alwaysontop   isfakefullscreen   monitor */
+	{ "Gimp",           NULL,       NULL,       0,            0,           1,             0,            0,                  -1 },
+	{ "Google-chrome",  NULL,       NULL,       0,            0,           0,             0,            1,                  -1 },
+	{ "Firefox",        NULL,       NULL,       1 << 8,       0,           0,             0,            0,                  -1, },
+	{ "XTerm",          NULL,       NULL,       1,            1,           1,             0,            1,                  -1 },
 };
 
 /* layout(s) */
