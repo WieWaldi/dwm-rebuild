@@ -24,7 +24,11 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+/* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
+/* static const char *tags[] = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }; */
+/* static const char *tags[] = { "☹", "♨", "♺", "♿", "⚒", "⚓", "⚕", "⚗", "i⚛ }; */
+/* static const char *tags[] = { "", "Finder", "File", "Edit", "View", "Settings", "Go", "Window", "Help"}; */
+static const char *tags[] = { "", "", "", "", "", "", "󰊻", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -43,29 +47,33 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+
+/* include */
+#include <X11/XF86keysym.h>
 #include "vanitygaps.c"
+#include "movestack.c"
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "[M]",      monocle },
-	{ "[@]",      spiral },
-	{ "[\\]",     dwindle },
-	{ "D[]",      deck },
-	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
-	{ "HHH",      grid },
-	{ "###",      nrowgrid },
-	{ "---",      horizgrid },
-	{ ":::",      gaplessgrid },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ NULL,       NULL },
+	{ "   Tile     ", tile },                                                                                     // first entry is default
+	{ "   Float    ", NULL },                                                                                     // no layout function means floating behavior
+	{ "   Monocle  ", monocle },
+	{ "   Spiral   ", spiral },
+	{ "   Dwindle  ", dwindle },
+	{ "   Deck     ", deck },
+	{ "   BStack   ", bstack },
+	{ "   BStackH  ", bstackhoriz },
+	{ "   Grid     ", grid },
+	{ "   nRow Grid", nrowgrid },
+	{ "   HorizGrid", horizgrid },
+	{ "   Gapless G", gaplessgrid },
+	{ "| |CMaster  ", centeredmaster },
+	{ "| |CFMaster ", centeredfloatingmaster },
+	{ NULL,            NULL },
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -76,12 +84,27 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static char dmenumon[2] = "0";                                                                                  // component of dmenucmd, manipulated in spawn()
+static const char *dmenucmd[]           = { "dmenu_run", "-m", dmenumon, "-i", "-c", "-l", "15", "-bw", "2", "-p", "Яцп ТЋїѕ Ѕћїт: 󰜎 ", NULL };
+static const char *dmenusystem[]        = { "dwm-system", NULL };
+static const char *dmenumedia[]         = { "dwm-media", NULL };
+static const char *termcmd[]            = { "st", NULL };
+static const char *tmuxcmd[]            = { "st", "-e", "tmux-start.sh", "Login", NULL };
+static const char *volumeup[]           = { "dwm-volumectrl", "up", NULL };
+static const char *volumedown[]         = { "dwm-volumectrl", "down", NULL };
+static const char *volumemute[]         = { "dwm-volumectrl", "mute", NULL };
+static const char *brightnessup[]       = { "dwm-brightness", "up", NULL };
+static const char *brightnessdown[]     = { "dwm-brightness", "down", NULL };
+static const char *xmenu[]              = { "xmenu.sh", NULL };
+static const char *scratchpad1[]        = { "1", "st", "-t", "ScratchPad1", "-g", "200x40", "-e", "tmux-start.sh", "ScratchPad1", NULL}; 
+static const char *scratchpad2[]        = { "2", "xterm", "-class", "XTermScratchPad", "-title", "ScratchPad2", "-e", "tmux-start.sh", "ScratchPad2", NULL}; 
+static const char *NoteTaking[]         = { "3", "xterm", "-class", "XTermNoteTaking", "-title", "NoteTaking", "-e", "dwm-notetaking", NULL}; 
+static const char *layoutmenu_cmd       = "dwm-layoutmenu";
 
 static const Key keys[] = {
-	/* modifier                     key        function        argument */
+	/* modifier                     key                         function        argument */
+	{ MODKEY|ShiftMask,             XK_q,                       quit,           {0} },
+	{ MODKEY,                       XK_q,                       killclient,     {0} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -95,24 +118,23 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY|Mod4Mask,              XK_u,      incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_i,      incrigaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,      incrigaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_o,      incrogaps,      {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_o,      incrogaps,      {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_6,      incrihgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_7,      incrivgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_8,      incrohgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_9,      incrovgaps,     {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
+	{ MODKEY|ShiftMask,              XK_u,      incrgaps,       {.i = +1 } },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_i,      incrigaps,      {.i = +1 } },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_i,      incrigaps,      {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_o,      incrogaps,      {.i = +1 } },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_o,      incrogaps,      {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_6,      incrihgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_7,      incrivgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_8,      incrohgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_9,      incrovgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_0,      togglegaps,     {0} },
+	{ MODKEY|ShiftMask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -124,6 +146,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn,          {.v = volumedown } },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,          {.v = volumeup } },
+	{ 0,                            XF86XK_AudioMute,           spawn,          {.v = volumemute } },
+	{ 0,                            XF86XK_MonBrightnessUp,     spawn,          {.v = brightnessup } },
+	{ 0,                            XF86XK_MonBrightnessDown,   spawn,          {.v = brightnessdown } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -133,7 +160,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
