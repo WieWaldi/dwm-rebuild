@@ -37,11 +37,14 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class            instance    title       tags mask     iscentered   isfloating     alwaysontop   isfakefullscreen   monitor */
-	{ "Gimp",           NULL,       NULL,       0,            0,           1,             0,            0,                  -1 },
-	{ "Google-chrome",  NULL,       NULL,       0,            0,           0,             0,            1,                  -1 },
-	{ "Firefox",        NULL,       NULL,       1 << 8,       0,           0,             0,            0,                  -1, },
-	{ "XTerm",          NULL,       NULL,       1,            1,           1,             0,            1,                  -1 },
+	/* class                instance                                title                           tags mask   iscentered    isfloating    alwaysontop   isfakefullscreen   monitor  scratch key */
+	{ "Gimp",               NULL,                                   NULL,                           0,          0,            1,            0,            0,                  -1      0 },
+	{ "Google-chrome",      NULL,                                   NULL,                           0,          0,            0,            0,            1,                  -1      0 },
+	{ "Firefox",            NULL,                                   NULL,                           1 << 8,     0,            0,            0,            0,                  -1,     0 },
+	{ "XTerm",              NULL,                                   NULL,                           1,          1,            1,            0,            1,                  -1      0 },
+	{ NULL,                 NULL,                                   "ScratchPad1",                  0,          1,            1,            1,            0,                  -1,     '1' },
+	{ NULL,                 NULL,                                   "ScratchPad2",                  0,          1,            1,            1,            0,                  -1,     '2' },
+	{ NULL,                 NULL,                                   "NoteTaking",                   0,          1,            1,            1,            0,                  -1,     '3' },
 };
 
 /* layout(s) */
@@ -100,9 +103,9 @@ static const char *volumemute[]         = { "dwm-volumectrl", "mute", NULL };
 static const char *brightnessup[]       = { "dwm-brightness", "up", NULL };
 static const char *brightnessdown[]     = { "dwm-brightness", "down", NULL };
 static const char *xmenu[]              = { "xmenu.sh", NULL };
-// static const char *scratchpad1[]        = { "1", "st", "-t", "ScratchPad1", "-g", "200x40", "-e", "tmux-start.sh", "ScratchPad1", NULL}; 
-// static const char *scratchpad2[]        = { "2", "xterm", "-class", "XTermScratchPad", "-title", "ScratchPad2", "-e", "tmux-start.sh", "ScratchPad2", NULL}; 
-// static const char *NoteTaking[]         = { "3", "xterm", "-class", "XTermNoteTaking", "-title", "NoteTaking", "-e", "dwm-notetaking", NULL}; 
+static const char *scratchpad1[]        = { "1", "st", "-t", "ScratchPad1", "-g", "200x40", "-e", "tmux-start.sh", "ScratchPad1", NULL}; 
+static const char *scratchpad2[]        = { "2", "xterm", "-class", "XTermScratchPad", "-title", "ScratchPad2", "-e", "tmux-start.sh", "ScratchPad2", NULL}; 
+static const char *NoteTaking[]         = { "3", "xterm", "-class", "XTermNoteTaking", "-title", "NoteTaking", "-e", "dwm-notetaking", NULL}; 
 static const char *layoutmenu_cmd       = "dwm-layoutmenu";
 
 static const Key keys[] = {
