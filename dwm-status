@@ -235,9 +235,9 @@ while true; do
         printf " %3s%%" ${cpu_used}
     }
 
-    xsetroot -name "$(build_dwm_status)"
+    # xsetroot -name "$(build_dwm_status)"
     # xsetroot -name "$(build_dwm_test)"
-    # echo "$(build_dwm_status)"
+    echo "$(build_dwm_status)"
 
     # reset old rates
     cpu_idle_old=$cpu_idle_now
