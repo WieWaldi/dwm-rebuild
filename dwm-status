@@ -226,9 +226,9 @@ build_dwm_status(){
     printf '\x04[%s]' "$(print_temperature)"
     printf '\x05[%s]' "$(print_cpu_used)"
     printf '\x06[%s]' "$(print_mem_used)"
-    printf '\x07[%s]' "$(print_date_time)"
+    # printf '\x07[%s]' "$(print_stuff)"
     # printf '\x08[%s]' "$(print_stuff)"
-    # printf '\x09[%s]' "$(print_stuff)"
+    printf '\x09[%s]' "$(print_date_time)"
 }
 
 while true; do
