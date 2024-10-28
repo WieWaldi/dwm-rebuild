@@ -1,4 +1,4 @@
-#!/bin/sh
+!/bin/sh
 #
 # +----------------------------------------------------------------------------+
 # | dwm_status                                                                 |
@@ -84,7 +84,7 @@ print_mem_used() {
     printf " %s" "$(free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.2f┊%2.2f GB\n", ( $3 / 1024), ($2 / 1024))}')"
     # mem_used="$(free -m | grep "Mem" | awk '{print $3}')"
     # mem_free="$(free -m | grep "Mem" | awk '{print $4}')"
-    # printf "\x02 Used:${mem_used}MB|Free:${mem_free}MB"
+    # printf " Used:${mem_used}MB|Free:${mem_free}MB"
 }
 
 print_date() {
@@ -150,7 +150,7 @@ print_volume() {
             volume_icon="󰖁"
         ;;
     esac
-    printf "\x03%s %3s%%" "${volume_icon}" "${volume_level}"
+    printf "%s %3s%%" "${volume_icon}" "${volume_level}"
 }
 
 print_network() {
@@ -220,9 +220,15 @@ print_appleicons() {
 # }
 
 build_dwm_status(){
-    printf "%s" " \x01[" "$(print_battery)" "]"
-    printf "%s" " \x02[" "$(print_volume)" "]"
-    printf "%s" " \x02[" "$(print_volume)" "]"
+    printf '\x01[%s]' "$(print_battery)"
+    printf '\x02[%s]' "$(print_volume)"
+    printf '\x03[%s]' "$(print_network)"
+    printf '\x04[%s]' "$(print_temperature)"
+    printf '\x05[%s]' "$(print_cpu_used)"
+    printf '\x06[%s]' "$(print_mem_used)"
+    printf '\x07[%s]' "$(print_date_time)"
+    # printf '\x08[%s]' "$(print_stuff)"
+    # printf '\x09[%s]' "$(print_stuff)"
 }
 
 while true; do
@@ -238,7 +244,6 @@ while true; do
     }
 
     xsetroot -name "$(build_dwm_status)"
-    # xsetroot -name "$(build_dwm_test)"
     # echo "$(build_dwm_status)"
 
     # reset old rates

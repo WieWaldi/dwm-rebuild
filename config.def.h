@@ -149,9 +149,9 @@ static const char *layoutmenu_cmd       = "dwm-layoutmenu";
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static const char *statuscmd[]          = { "/bin/sh", "-c", NULL, NULL };
 static const StatusCmd statuscmds[]     = { 
-                                            { "dunsify 1 Mouse$BUTTON", 1 },
-                                            { "dunsify 2 Mouse$BUTTON", 2 },
-                                            { "dunsify 3 Mouse$BUTTON", 3 },
+                                            { "dunstify 1 Mouse$BUTTON", 1 },
+                                            { "dunstify 2 Mouse$BUTTON", 2 },
+                                            { "dunstify 3 Mouse$BUTTON", 3 },
 };
 
 static const Key keys[] = {
