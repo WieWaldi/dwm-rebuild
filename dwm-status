@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 #
 # +----------------------------------------------------------------------------+
 # | dwm_status                                                                 |
@@ -99,7 +99,7 @@ print_time() {
 print_date_time() {
     printf "󰭦 %s" "$(date "+%A %d.%m.%Y")"
     # printf "󱑎 %s  %s" "$(date "+%H:%M")" "$(TZ=US/Central date "+%H:%M")"
-    printf "\x01󱑎 %s" "$(date "+%H:%M")"
+    printf "󱑎 %s" "$(date "+%H:%M")"
 
 }
 
@@ -209,27 +209,29 @@ print_appleicons() {
     printf "    "
 }
 
-# build_dwm_status() {
-#     prompt_segment ${tbo_color0} ${tbo_color15} "$(print_battery)"
-#     prompt_segment ${tbo_color1} ${tbo_color15} "$(print_volume)"
-#     prompt_segment ${tbo_color2} ${tbo_color15} "$(print_network)"
-#     prompt_segment ${tbo_color3} ${tbo_color15} "$(print_temperature)"
-#     prompt_segment ${tbo_color5} ${tbo_color15} "$(print_cpu_used)"
-#     prompt_segment ${tbo_color6} ${tbo_color15} "$(print_mem_used)"
-#     prompt_segment ${tbo_color7} ${tbo_color15} "$(print_date_time)"
-# }
-
-build_dwm_status(){
-    printf '\x01[%s]' "$(print_battery)"
-    printf '\x02[%s]' "$(print_volume)"
-    printf '\x03[%s]' "$(print_network)"
-    printf '\x04[%s]' "$(print_temperature)"
-    printf '\x05[%s]' "$(print_cpu_used)"
-    printf '\x06[%s]' "$(print_mem_used)"
-    # printf '\x07[%s]' "$(print_stuff)"
-    # printf '\x08[%s]' "$(print_stuff)"
-    printf '\x09[%s]' "$(print_date_time)"
+# Build status without colors
+build_dwm_status() {
+    prompt_segment ${tbo_color0} ${tbo_color15} "\x01$(print_battery)"
+    prompt_segment ${tbo_color1} ${tbo_color15} "\x02$(print_volume)"
+    prompt_segment ${tbo_color2} ${tbo_color15} "\x03$(print_network)"
+    prompt_segment ${tbo_color3} ${tbo_color15} "\x04$(print_temperature)"
+    prompt_segment ${tbo_color5} ${tbo_color15} "\x05$(print_cpu_used)"
+    prompt_segment ${tbo_color6} ${tbo_color15} "\x06$(print_mem_used)"
+    prompt_segment ${tbo_color7} ${tbo_color15} "\x09$(print_date_time)"
 }
+
+# Build status without colors
+# build_dwm_status(){
+#     printf '\x01[%s]' "$(print_battery)"
+#     printf '\x02[%s]' "$(print_volume)"
+#     printf '\x03[%s]' "$(print_network)"
+#     printf '\x04[%s]' "$(print_temperature)"
+#     printf '\x05[%s]' "$(print_cpu_used)"
+#     printf '\x06[%s]' "$(print_mem_used)"
+#     printf '\x07[%s]' "$(print_stuff)"
+#     printf '\x08[%s]' "$(print_stuff)"
+#     printf '\x09[%s]' "$(print_date_time)"
+# }
 
 while true; do
     # get new cpu idle and total usage
