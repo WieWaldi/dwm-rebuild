@@ -152,19 +152,12 @@ static const char *scratchpad2[]        = { "2", "xterm", "-class", "XTermScratc
 static const char *NoteTaking[]         = { "3", "xterm", "-class", "XTermNoteTaking", "-title", "NoteTaking", "-e", "dwm-notetaking", NULL }; 
 static const char *layoutmenu_cmd       = "dwm-layoutmenu";
 
-/* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
-static const char *statuscmd[]          = { "/bin/sh", "-c", NULL, NULL };
-static const StatusCmd statuscmds[]     = { 
-                                            { "dwm-statuscmd 1 $BUTTON", 1 },
-                                            { "dwm-statuscmd 2 $BUTTON", 2 },
-                                            { "dwm-statuscmd 3 $BUTTON", 3 },
-                                            { "dwm-statuscmd 4 $BUTTON", 4 },
-                                            { "dwm-statuscmd 5 $BUTTON", 5 },
-                                            { "dwm-statuscmd 6 $BUTTON", 6 },
-                                            { "dwm-statuscmd 7 $BUTTON", 7 },
-                                            { "dwm-statuscmd 8 $BUTTON", 8 },
-                                            { "dwm-statuscmd 9 $BUTTON", 9 },
+static const StatusCmd statuscmds[] = {
+	{ "dunstify 1$BUTTON", 1 },
+	{ "dunstify 2$BUTTON", 2 },
+	{ "dunstify 3$BUTTON", 3 },
 };
+static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 
 static const Key keys[] = {
 	/* modifier                     key                         function                argument */
@@ -227,6 +220,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioMute,           spawn,                  {.v = volumemute } },
 	{ 0,                            XF86XK_MonBrightnessUp,     spawn,                  {.v = brightnessup } },
 	{ 0,                            XF86XK_MonBrightnessDown,   spawn,                  {.v = brightnessdown } },
+//	{ 0,                            XF86XK_AudioLowerVolume,    spawn,                  SHCMD("command.sh option1 option2") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -245,7 +239,7 @@ static const Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        layoutmenu,     {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-//	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+// 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkStatusText,        0,              Button1,        spawn,          {.v = statuscmd } },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = statuscmd } },
 	{ ClkStatusText,        0,              Button3,        spawn,          {.v = statuscmd } },
