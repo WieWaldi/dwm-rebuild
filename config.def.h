@@ -106,10 +106,10 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static int nmaster     = 1;    /* number of clients in master area */
-static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+// static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+// static int nmaster     = 1;    /* number of clients in master area */
+// static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+// static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 
@@ -150,7 +150,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0";                                                                                  // component of dmenucmd, manipulated in spawn()
-static const char *dmenucmd[]           = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[]           = { "dmenu_run", "-m", dmenumon, "-i", "-c", "-l", "15", "-bw", "2", "-p", "Яцп ТЋїѕ Ѕћїт: 󰜎 ", NULL };
 static const char *dmenusystem[]        = { "dwm-system", NULL };
 static const char *dmenumedia[]         = { "dwm-media", NULL };
 static const char *termcmd[]            = { "st", NULL };
