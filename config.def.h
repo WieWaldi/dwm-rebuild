@@ -14,21 +14,44 @@ static const int focusedontoptiled          = 1;        /* 1 means focused tile 
 static const int focusonwheel               = 0;
 static const char *fonts[]                  = { "FiraMono Nerd Font:size=12", "monospace:size=10" };
 static const char dmenufont[]               = "monospace:size=10";
-static const char col_gray1[]               = "#222222";
-static const char col_gray2[]               = "#444444";
-static const char col_gray3[]               = "#bbbbbb";
-static const char col_gray4[]               = "#eeeeee";
-static const char col_cyan[]                = "#005577";
+// static const char col_gray1[]               = "#222222";
+// static const char col_gray2[]               = "#444444";
+// static const char col_gray3[]               = "#bbbbbb";
+// static const char col_gray4[]               = "#eeeeee";
+// static const char col_cyan[]                = "#005577";
+static char normbgcolor[]                   = "#222222";
+static char normbordercolor[]               = "#444444";
+static char normfgcolor[]                   = "#bbbbbb";
+static char selfgcolor[]                    = "#eeeeee";
+static char selbordercolor[]                = "#005577";
+static char selbgcolor[]                    = "#005577";
+static char statusfgcolor[]                 = "#eeeeee";
+static char statusbgcolor[]                 = "#5f005f";
+static char tagselfgcolor[]                 = "#eeeeee";
+static char tagselbgcolor[]                 = "#5f005f";
+static char tagnormfgcolor[]                = "#af87d7";
+static char tagnormbgcolor[]                = "#5f005f";
+static char infoselfgcolor[]                = "#eeeeee";
+static char infoselbgcolor[]                = "#5f005f";
+static char infonormfgcolor[]               = "#eeeeee";
+static char infonormbgcolor[]               = "#5f005f";
 
-static const char *colors[][3] = {
+static char *colors[][3] = {
 		/*                                         fg          bg      border   */
-		[SchemeNorm]                        = { "#bcbcbc", "#5f005f", "#444444" },
-		[SchemeSel]                         = { "#eeeeee", "#000000", "#000000" },
-		[SchemeStatus]                      = { "#eeeeee", "#5f005f", "#000000" },  // Statusbar right {text,background,not used but cannot be empty}
-		[SchemeTagsSel]                     = { "#eeeeee", "#5f005f", "#000000" },  // Tagbar left selected {text,background,not used but cannot be empty}
-		[SchemeTagsNorm]                    = { "#af87d7", "#5f005f", "#000000" },  // Tagbar left unselected {text,background,not used but cannot be empty}
-		[SchemeInfoSel]                     = { "#eeeeee", "#5f005f", "#000000" },  // infobar middle  selected {text,background,not used but cannot be empty}
-		[SchemeInfoNorm]                    = { "#eeeeee", "#5f005f", "#000000" },  // infobar middle  unselected {text,background,not used but cannot be empty}
+// 		[SchemeNorm]                        = { "#bcbcbc", "#5f005f", "#444444" },
+// 		[SchemeSel]                         = { "#eeeeee", "#000000", "#000000" },
+// 		[SchemeStatus]                      = { "#eeeeee", "#5f005f", "#000000" },  // Statusbar right {text,background,not used but cannot be empty}
+// 		[SchemeTagsSel]                     = { "#eeeeee", "#5f005f", "#000000" },  // Tagbar left selected {text,background,not used but cannot be empty}
+// 		[SchemeTagsNorm]                    = { "#af87d7", "#5f005f", "#000000" },  // Tagbar left unselected {text,background,not used but cannot be empty}
+// 		[SchemeInfoSel]                     = { "#eeeeee", "#5f005f", "#000000" },  // infobar middle  selected {text,background,not used but cannot be empty}
+// 		[SchemeInfoNorm]                    = { "#eeeeee", "#5f005f", "#000000" },  // infobar middle  unselected {text,background,not used but cannot be empty}
+		[SchemeNorm]                        = { normfgcolor,        normbgcolor,        normbordercolor },
+		[SchemeSel]                         = { selfgcolor,         selbgcolor,         selbordercolor  },
+		[SchemeStatus]                      = { statusfgcolor,      statusbgcolor,      "#000000"  },           // Statusbar right {text,background,not used but cannot be empty}
+		[SchemeTagsSel]                     = { tagselfgcolor,      tagselbgcolor,      "#000000"  },           // Tagbar left selected {text,background,not used but cannot be empty}
+		[SchemeTagsNorm]                    = { tagnormfgcolor,     tagnormbgcolor,     "#000000"  },           // Tagbar left unselected {text,background,not used but cannot be empty}
+		[SchemeInfoSel]                     = { infoselfgcolor,     infoselbgcolor,     "#000000"  },           // infobar middle  selected {text,background,not used but cannot be empty}
+		[SchemeInfoNorm]                    = { infonormfgcolor,    infonormbgcolor,    "#000000"  },           // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
@@ -136,7 +159,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0";                                                                                  // component of dmenucmd, manipulated in spawn()
-static const char *dmenucmd[]           = { "dmenu_run", "-m", dmenumon, "-i", "-c", "-l", "15", "-bw", "2", "-p", "Яцп ТЋїѕ Ѕћїт: 󰜎 ", NULL };
+// static const char *dmenucmd[]           = { "dmenu_run", "-m", dmenumon, "-i", "-c", "-l", "15", "-bw", "2", "-p", "Яцп ТЋїѕ Ѕћїт: 󰜎 ", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *dmenusystem[]        = { "dwm-system", NULL };
 static const char *dmenumedia[]         = { "dwm-media", NULL };
 static const char *termcmd[]            = { "st", NULL };
@@ -222,6 +246,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period,                  focusmon,               {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,                   tagmon,                 {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,                  tagmon,                 {.i = +1 } },
+	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	{ 0,                            XF86XK_AudioLowerVolume,    spawn,                  {.v = volumedown } },
 	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,                  {.v = volumeup } },
 	{ 0,                            XF86XK_AudioMute,           spawn,                  {.v = volumemute } },
