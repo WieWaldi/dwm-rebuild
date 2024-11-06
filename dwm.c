@@ -1383,6 +1383,17 @@ loadxrdb()
         XRDB_LOAD_COLOR("dwm.infoselbgcolor", infoselbgcolor);
         XRDB_LOAD_COLOR("dwm.infonormfgcolor", infonormfgcolor);
         XRDB_LOAD_COLOR("dwm.infonormbgcolor", infonormbgcolor);
+        XRDB_LOAD_COLOR("dwm.borderpx", borderpx);
+        XRDB_LOAD_COLOR("dwm.snap", snap);
+        XRDB_LOAD_COLOR("dwm.gappih", gappih);
+        XRDB_LOAD_COLOR("dwm.gappiv", gappiv);
+        XRDB_LOAD_COLOR("dwm.gappoh", gappoh);
+        XRDB_LOAD_COLOR("dwm.gappov", gappov);
+        XRDB_LOAD_COLOR("dwm.showbar", showbar);
+        XRDB_LOAD_COLOR("dwm.topbar", topbar);
+        XRDB_LOAD_COLOR("dwm.focusedontoptiled", focusedontoptiled);
+        XRDB_LOAD_COLOR("dwm.focusonwheel", focusonwheel);
+        XRDB_LOAD_COLOR("dwm.fonts", fonts);
       }
     }
   }
