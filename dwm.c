@@ -1373,6 +1373,16 @@ loadxrdb()
         XRDB_LOAD_COLOR("dwm.selbordercolor", selbordercolor);
         XRDB_LOAD_COLOR("dwm.selbgcolor", selbgcolor);
         XRDB_LOAD_COLOR("dwm.selfgcolor", selfgcolor);
+        XRDB_LOAD_COLOR("dwm.statusfgcolor", statusfgcolor);
+        XRDB_LOAD_COLOR("dwm.statusbgcolor", statusbgcolor);
+        XRDB_LOAD_COLOR("dwm.tagselfgcolor", tagselfgcolor);
+        XRDB_LOAD_COLOR("dwm.tagselbgcolor", tagselbgcolor);
+        XRDB_LOAD_COLOR("dwm.tagnormfgcolor", tagnormfgcolor);
+        XRDB_LOAD_COLOR("dwm.tagnormbgcolor", tagnormbgcolor);
+        XRDB_LOAD_COLOR("dwm.infoselfgcolor", infoselfgcolor);
+        XRDB_LOAD_COLOR("dwm.infoselbgcolor", infoselbgcolor);
+        XRDB_LOAD_COLOR("dwm.infonormfgcolor", infonormfgcolor);
+        XRDB_LOAD_COLOR("dwm.infonormbgcolor", infonormbgcolor);
       }
     }
   }

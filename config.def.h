@@ -12,7 +12,7 @@ static const int showbar                    = 1;        /* 0 means no bar */
 static const int topbar                     = 1;        /* 0 means bottom bar */
 static const int focusedontoptiled          = 1;        /* 1 means focused tile client is shown on top of floating windows */
 static const int focusonwheel               = 0;
-static const char *fonts[]                  = { "FiraMono Nerd Font:size=12", "monospace:size=10" };
+static const char *fonts[]                  = { "FiraMono Nerd Font:size=24" };
 static const char dmenufont[]               = "monospace:size=10";
 // static const char col_gray1[]               = "#222222";
 // static const char col_gray2[]               = "#444444";
@@ -26,15 +26,15 @@ static char selfgcolor[]                    = "#eeeeee";
 static char selbordercolor[]                = "#005577";
 static char selbgcolor[]                    = "#005577";
 static char statusfgcolor[]                 = "#eeeeee";
-static char statusbgcolor[]                 = "#5f005f";
+static char statusbgcolor[]                 = "#000000";
 static char tagselfgcolor[]                 = "#eeeeee";
 static char tagselbgcolor[]                 = "#5f005f";
 static char tagnormfgcolor[]                = "#af87d7";
-static char tagnormbgcolor[]                = "#5f005f";
+static char tagnormbgcolor[]                = "#ff0000";
 static char infoselfgcolor[]                = "#eeeeee";
-static char infoselbgcolor[]                = "#5f005f";
+static char infoselbgcolor[]                = "#0000ff";
 static char infonormfgcolor[]               = "#eeeeee";
-static char infonormbgcolor[]               = "#5f005f";
+static char infonormbgcolor[]               = "#0000ff";
 
 static char *colors[][3] = {
 		/*                                         fg          bg      border   */
