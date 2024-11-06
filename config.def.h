@@ -47,8 +47,6 @@ static char *colors[][3] = {
 
 /* tagging */
 /* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
-/* static const char *tags[] = { "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒" }; */
-/* static const char *tags[] = { "☹", "♨", "♺", "♿", "⚒", "⚓", "⚕", "⚗", "i⚛ }; */
 /* static const char *tags[] = { "", "Finder", "File", "Edit", "View", "Settings", "Go", "Window", "Help"}; */
 static const char *tags[] = { "", "", "", "", "", "", "󰊻", "", "" };
 
@@ -104,12 +102,6 @@ static const Rule rules[] = {
 	{ NULL,                 NULL,                     "ScratchPad2",                  0,         1,          1,          1,           0,                -1,     '2' },
 	{ NULL,                 NULL,                     "NoteTaking",                   0,         1,          1,          1,           0,                -1,     '3' },
 };
-
-/* layout(s) */
-// static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-// static int nmaster     = 1;    /* number of clients in master area */
-// static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
-// static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 
@@ -231,8 +223,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_b,                       togglebar,              {0} },
 	{ MODKEY,                       XK_j,                       focusstack,             {.i = +1 } },
 	{ MODKEY,                       XK_k,                       focusstack,             {.i = -1 } },
-	{ MODKEY,                       XK_i,                       incnmaster,             {.i = +1 } },
-	{ MODKEY,                       XK_d,                       incnmaster,             {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_i,                       incnmaster,             {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_d,                       incnmaster,             {.i = -1 } },
 	{ MODKEY,                       XK_h,                       setmfact,               {.f = -0.05} },
 	{ MODKEY,                       XK_l,                       setmfact,               {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_h,                       setcfact,               {.f = +0.25} },
@@ -240,7 +232,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_o,                       setcfact,               {.f =  0.00} },
 	{ MODKEY|ShiftMask,             XK_j,                       movestack,              {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,                       movestack,              {.i = -1 } },
-	{ MODKEY,                       XK_Return,                  zoom,                   {0} },
+//	{ MODKEY,                       XK_Return,                  zoom,                   {0} },
 	{ MODKEY|ShiftMask,             XK_u,                       incrgaps,               {.i = +1 } },
 	{ MODKEY|ShiftMask|ShiftMask,   XK_u,                       incrgaps,               {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_i,                       incrigaps,              {.i = +1 } },
@@ -277,35 +269,36 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_MonBrightnessUp,     spawn,                  {.v = brightnessup } },
 	{ 0,                            XF86XK_MonBrightnessDown,   spawn,                  {.v = brightnessdown } },
 //	{ 0,                            XF86XK_AudioLowerVolume,    spawn,                  SHCMD("command.sh option1 option2") },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	TAGKEYS(                        XK_1,                       0)
+	TAGKEYS(                        XK_2,                       1)
+	TAGKEYS(                        XK_3,                       2)
+	TAGKEYS(                        XK_4,                       3)
+	TAGKEYS(                        XK_5,                       4)
+	TAGKEYS(                        XK_6,                       5)
+	TAGKEYS(                        XK_7,                       6)
+	TAGKEYS(                        XK_8,                       7)
+	TAGKEYS(                        XK_9,                       8)
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
-	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        layoutmenu,     {0} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-// 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-	{ ClkStatusText,        0,              Button1,        spawn,          {.v = statuscmd } },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = statuscmd } },
-	{ ClkStatusText,        0,              Button3,        spawn,          {.v = statuscmd } },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizeorfacts,  {0} },
-	{ ClkClientWin,       MODKEY|ShiftMask, Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+	/* click                event mask          button          function        argument */
+	{ ClkLtSymbol,          0,                  Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,                  Button3,        layoutmenu,     {0} },
+	{ ClkWinTitle,          0,                  Button2,        zoom,           {0} },
+	{ ClkWinTitle,          0,                  Button3,        spawn,          {.v = xmenu } },
+// 	{ ClkStatusText,        0,                  Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,                  Button1,        spawn,          {.v = statuscmd } },
+	{ ClkStatusText,        0,                  Button2,        spawn,          {.v = statuscmd } },
+	{ ClkStatusText,        0,                  Button3,        spawn,          {.v = statuscmd } },
+	{ ClkClientWin,         MODKEY,             Button1,        movemouse,      {0} },
+	{ ClkClientWin,         MODKEY,             Button2,        togglefloating, {0} },
+	{ ClkClientWin,         MODKEY|ShiftMask,   Button3,        resizeorfacts,  {0} },
+	{ ClkClientWin,         MODKEY,             Button3,        resizemouse,    {0} },
+	{ ClkTagBar,            0,                  Button1,        view,           {0} },
+	{ ClkTagBar,            0,                  Button3,        toggleview,     {0} },
+	{ ClkTagBar,            MODKEY,             Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,             Button3,        toggletag,      {0} },
 };
 
