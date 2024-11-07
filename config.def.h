@@ -1,7 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-<<<<<<< HEAD
 static char font[]                          = "monospace:size=10";                                              // font used at topbar
 static const char *fonts[]                  = { font };                                                         // get fonts from font.-)
 static float mfact                          = 0.55;                                                             // factor of master area size [0.05..0.95]
@@ -35,7 +34,6 @@ static char infoselfgcolor[]                = "#eeeeee";
 static char infoselbgcolor[]                = "#5f005f";
 static char infonormfgcolor[]               = "#eeeeee";
 static char infonormbgcolor[]               = "#5f005f";
-=======
 // static const unsigned int borderpx          = 1;        /* border pixel of windows */
 // static const unsigned int snap              = 32;       /* snap pixel */
 static const unsigned int gappih            = 20;       /* horiz inner gap between windows */
