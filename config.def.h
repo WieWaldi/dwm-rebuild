@@ -1,8 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
+<<<<<<< HEAD
 static char font[]                          = "monospace:size=10";                                              // font used at topbar
-static char *fonts[]                        = { font };                                                         // get fonts from font.-)
+static const char *fonts[]                  = { font };                                                         // get fonts from font.-)
 static float mfact                          = 0.55;                                                             // factor of master area size [0.05..0.95]
 static int nmaster                          = 1;                                                                // number of clients in master area
 static int resizehints                      = 1;                                                                // 1 means respect size hints in tiled resizals
@@ -34,6 +35,39 @@ static char infoselfgcolor[]                = "#eeeeee";
 static char infoselbgcolor[]                = "#5f005f";
 static char infonormfgcolor[]               = "#eeeeee";
 static char infonormbgcolor[]               = "#5f005f";
+=======
+// static const unsigned int borderpx          = 1;        /* border pixel of windows */
+// static const unsigned int snap              = 32;       /* snap pixel */
+static const unsigned int gappih            = 20;       /* horiz inner gap between windows */
+static const unsigned int gappiv            = 10;       /* vert inner gap between windows */
+static const unsigned int gappoh            = 10;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov            = 30;       /* vert outer gap between windows and screen edge */
+static       int smartgaps                  = 0;        /* 1 means no outer gap when there is only one window */
+// static const int showbar                    = 1;        /* 0 means no bar */
+// static const int topbar                     = 1;        /* 0 means bottom bar */
+static const int focusedontoptiled          = 1;        /* 1 means focused tile client is shown on top of floating windows */
+static const int focusonwheel               = 0;
+// static const char *fonts[]                  = { "FiraMono Nerd Font:size=12", "monospace:size=10" };
+// static const char dmenufont[]               = "monospace:size=10";
+// static const char col_gray1[]               = "#222222";
+// static const char col_gray2[]               = "#444444";
+// static const char col_gray3[]               = "#bbbbbb";
+// static const char col_gray4[]               = "#eeeeee";
+// static const char col_cyan[]                = "#005577";
+static unsigned int borderpx  = 1;        /* border pixel of windows */
+static unsigned int snap      = 32;       /* snap pixel */
+static int showbar            = 1;        /* 0 means no bar */
+static int topbar             = 1;        /* 0 means bottom bar */
+static char font[]            = "monospace:size=10";
+static char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { font };
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]           = "#bbbbbb";
+static char selfgcolor[]            = "#eeeeee";
+static char selbordercolor[]        = "#005577";
+static char selbgcolor[]            = "#005577";
+>>>>>>> parent of 00baca4 (Change 'static const char *fonts[]' to 'static char *fonts[]')
 static char *colors[][3] = {
         /*                                      fg                  bg                  border   */
 		[SchemeNorm]                        = { normfgcolor,        normbgcolor,        normbordercolor },
