@@ -19,3 +19,10 @@ Temporary repository to fiddle around
   - [dwm-status2d-6.3.diff](https://dwm.suckless.org/patches/status2d/)
   - [dwm-statuscmd-nosignal-20210402-67d76bd.diff](https://dwm.suckless.org/patches/statuscmd/)
   - [dwm-xresources-20210827-138b405.diff](https://dwm.suckless.org/patches/xresources/)
+
+## ToDo
+  - [dwm-decorhints-6.2.diff](https://dwm.suckless.org/patches/decoration_hints/)
+  - [dwm-preview-all-windows-6.5.diff](https://dwm.suckless.org/patches/preview-all-win/)
+  - [dwm-steam-6.2.diff](https://dwm.suckless.org/patches/steam/)
+  - [dwm-switchtotag-6.2.diff](https://dwm.suckless.org/patches/switchtotag/dwm-switchtotag-6.2.diff)
+  - [dwm-tag-preview-6.3.diff](https://dwm.suckless.org/patches/tag-previews/)
